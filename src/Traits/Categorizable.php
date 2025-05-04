@@ -63,7 +63,7 @@ trait Categorizable
      */
     public function categories(): MorphToMany
     {
-        return $this->morphToMany(config('rinvex.categories.models.category'), 'categorizable', config('rinvex.categories.tables.categorizables'), 'categorizable_id', 'category_id')
+        return $this->morphToMany(config('angkor.categories.models.category'), 'categorizable', config('angkor.categories.tables.categorizables'), 'categorizable_id', 'category_id')
                     ->withTimestamps();
     }
 
@@ -142,7 +142,7 @@ trait Categorizable
      */
     public function scopeWithCategories(Builder $builder, $categories): Builder
     {
-        return static::scopeWithAnyCategories($builder, $categories);
+        return $this->scopeWithAnyCategories($builder, $categories);
     }
 
     /**
@@ -197,7 +197,7 @@ trait Categorizable
      */
     public function hasAnyCategories($categories): bool
     {
-        return static::hasCategories($categories);
+        return $this->hasCategories($categories);
     }
 
     /**
