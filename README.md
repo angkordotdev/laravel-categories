@@ -1,29 +1,45 @@
-# Rinvex Categories
+# Angkor Categories
 
-**Rinvex Categories** is a polymorphic Laravel package, for category management. You can categorize any eloquent model with ease, and utilize the power of **[Nested Sets](https://github.com/lazychaser/laravel-nestedset)**, and the awesomeness of **[Sluggable](https://github.com/spatie/laravel-sluggable)**, and **[Translatable](https://github.com/spatie/laravel-translatable)** models out of the box.
+> This package is a fork of [rinvex/laravel-categories](https://github.com/rinvex/laravel-categories). We are grateful to the Rinvex team for their excellent work in creating and maintaining the original package.
 
-[![Packagist](https://img.shields.io/packagist/v/rinvex/laravel-categories.svg?label=Packagist&style=flat-square)](https://packagist.org/packages/rinvex/laravel-categories)
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/rinvex/laravel-categories.svg?label=Scrutinizer&style=flat-square)](https://scrutinizer-ci.com/g/rinvex/laravel-categories/)
-[![Travis](https://img.shields.io/travis/rinvex/laravel-categories.svg?label=TravisCI&style=flat-square)](https://travis-ci.org/rinvex/laravel-categories)
-[![StyleCI](https://styleci.io/repos/87599972/shield)](https://styleci.io/repos/87599972)
-[![License](https://img.shields.io/packagist/l/rinvex/laravel-categories.svg?label=License&style=flat-square)](https://github.com/rinvex/laravel-categories/blob/develop/LICENSE)
+**Angkor Categories** is a polymorphic Laravel package for category management. You can categorize any eloquent model with ease, and utilize the power of **[Nested Sets](https://github.com/lazychaser/laravel-nestedset)**, and the awesomeness of **[Sluggable](https://github.com/spatie/laravel-sluggable)**, and **[Translatable](https://github.com/spatie/laravel-translatable)** models out of the box.
 
+[![Packagist](https://img.shields.io/packagist/v/angkor/laravel-categories.svg?label=Packagist&style=flat-square)](https://packagist.org/packages/angkor/laravel-categories)
+[![License](https://img.shields.io/packagist/l/angkor/laravel-categories.svg?label=License&style=flat-square)](https://github.com/angkordotdev/laravel-categories/blob/main/LICENSE)
+
+## Key Features
+
+- 🌳 Nested Sets Implementation
+- 🌐 Multi-language Support 
+- 🔍 SEO-friendly Slugs
+- 🔌 Polymorphic Relationships
+- ⚡ High Performance Design
+- 🛠️ Laravel Integration
+
+## Credits
+
+This package is a fork of the excellent [rinvex/laravel-categories](https://github.com/rinvex/laravel-categories) package created by [Rinvex](https://rinvex.com). We are grateful for their work in creating the original foundation for this package.
+
+## Requirements
+
+- PHP >= 8.1
+- Laravel >= 10.0
 
 ## Installation
 
 1. Install the package via composer:
     ```shell
-    composer require rinvex/laravel-categories
+    composer require angkor/laravel-categories
     ```
 
 2. Publish resources (migrations and config files):
     ```shell
-    php artisan rinvex:publish:categories
+    php artisan angkor:publish:categories
     ```
 
 3. Execute migrations via the following command:
     ```shell
-    php artisan rinvex:migrate:categories
+    php artisan angkor:migrate:categories
     ```
 
 4. Done!
@@ -31,27 +47,39 @@
 
 ## Usage
 
-To add categories support to your eloquent models simply use `\Rinvex\Categories\Traits\Categorizable` trait.
+## Usage
+
+To add categories support to your eloquent models simply use `\Angkor\Categories\Traits\Categorizable` trait:
+
+```php
+use Angkor\Categories\Traits\Categorizable;
+
+class Post extends Model
+{
+    use Categorizable;
+    // ...
+}
+```
 
 ### Manage your categories
 
-Your categories are just normal [eloquent](https://laravel.com/docs/master/eloquent) models, so you can deal with it like so. Nothing special here!
+Your categories are just normal [eloquent](https://laravel.com/docs/master/eloquent) models, so you can manage them like any other model. The package comes with all the essential tools you need for category management.
 
-> **Notes:** since **Rinvex Categories** extends and utilizes other awesome packages, checkout the following documentations for further details:
-> - Powerful Nested Sets using [`kalnoy/nestedset`](https://github.com/lazychaser/laravel-nestedset)
-> - Automatic Slugging using [`spatie/laravel-sluggable`](https://github.com/spatie/laravel-sluggable)
-> - Translatable out of the box using [`spatie/laravel-translatable`](https://github.com/spatie/laravel-translatable)
+> **Notes:** Angkor Categories builds on these excellent packages:
+> - 🌳 Powerful Nested Sets using [`kalnoy/nestedset`](https://github.com/lazychaser/laravel-nestedset)
+> - 🔍 Automatic Slugging using [`spatie/laravel-sluggable`](https://github.com/spatie/laravel-sluggable)
+> - 🌐 Translations using [`spatie/laravel-translatable`](https://github.com/spatie/laravel-translatable)
 
-### Manage your categorizable model
+### Working with categorizable models
 
 The API is intutive and very straightforward, so let's give it a quick look:
 
 ```php
 // Get all categories
-$allCategories = app('rinvex.categories.category')->all();
+$allCategories = app('angkor.categories.category')->all();
 
 // Get instance of your model
-$post = new \App\Models\Post::find(123);
+$post = \App\Models\Post::find(123);
 
 // Get attached categories collection
 $post->categories;
@@ -73,7 +101,7 @@ $post->attachCategories([1, 2, 5]);
 $post->attachCategories(collect([1, 2, 5]));
 
 // Single category model instance
-$categoryInstance = app('rinvex.categories.category')->first();
+$categoryInstance = app('angkor.categories.category')->first();
 $post->attachCategories($categoryInstance);
 
 // Single category slug
@@ -86,7 +114,7 @@ $post->attachCategories(['first-category', 'second-category']);
 $post->attachCategories(collect(['first-category', 'second-category']));
 
 // Multiple category model instances
-$categoryInstances = app('rinvex.categories.category')->whereIn('id', [1, 2, 5])->get();
+$categoryInstances = app('angkor.categories.category')->whereIn('id', [1, 2, 5])->get();
 $post->attachCategories($categoryInstances);
 ```
 
@@ -132,17 +160,17 @@ $post->hasAnyCategories($categoryInstances);
 
 #### Generate category slugs
 
-**Rinvex Categories** auto generates slugs and auto detect and insert default translation for you if not provided, but you still can pass it explicitly through normal eloquent `create` method, as follows:
+**Angkor Categories** auto generates slugs and auto-detects and inserts default translations for you if not provided. You can also pass them explicitly through the normal eloquent `create` method, as follows:
 
 ```php
-app('rinvex.categories.category')->create(['name' => ['en' => 'My New Category'], 'slug' => 'custom-category-slug']);
+app('angkor.categories.category')->create(['name' => ['en' => 'My New Category'], 'slug' => 'custom-category-slug']);
 ```
 
 > **Note:** Check **[Sluggable](https://github.com/spatie/laravel-sluggable)** package for further details.
 
 #### Smart parameter detection
 
-**Rinvex Categories** methods that accept list of categories are smart enough to handle almost all kinds of inputs as you've seen in the above examples. It will check input type and behave accordingly. 
+The category methods are smart enough to handle almost all kinds of inputs as you've seen in the above examples. It will check input type and behave accordingly. 
 
 #### Retrieve all models attached to the category
 
@@ -155,7 +183,7 @@ $category->entries(\App\Models\Post::class)->get();
 
 #### Query scopes
 
-Yes, **Rinvex Categories** shipped with few awesome query scopes for your convenience, usage example:
+The package ships with several useful query scopes for your convenience. Here's how to use them:
 
 ```php
 // Single category id
@@ -711,11 +739,11 @@ Refer to the [Changelog](CHANGELOG.md) for a full history of the project.
 
 ## Support
 
-The following support channels are available at your fingertips:
+For support, please use the following channels:
 
-- [Chat on Slack](https://bit.ly/rinvex-slack)
-- [Help on Email](mailto:help@rinvex.com)
-- [Follow on Twitter](https://twitter.com/rinvex)
+- [GitHub Issues](https://github.com/angkor/laravel-categories/issues)
+- [GitHub Discussions](https://github.com/angkor/laravel-categories/discussions)
+- [Email Support](mailto:support@angkor.dev)
 
 
 ## Contributing & Protocols
@@ -733,11 +761,9 @@ Bug reports, feature requests, and pull requests are very welcome.
 
 ## Security Vulnerabilities
 
-We want to ensure that this package is secure for everyone. If you've discovered a security vulnerability in this package, we appreciate your help in disclosing it to us in a [responsible manner](https://en.wikipedia.org/wiki/Responsible_disclosure).
+We take security seriously. If you discover a security vulnerability within Angkor Categories, please send an email to [security@angkor.dev](mailto:security@angkor.dev). All security vulnerabilities will be promptly addressed.
 
-Publicly disclosing a vulnerability can put the entire community at risk. If you've discovered a security concern, please email us at [help@rinvex.com](mailto:help@rinvex.com). We'll work with you to make sure that we understand the scope of the issue, and that we fully address your concern. We consider correspondence sent to [help@rinvex.com](mailto:help@rinvex.com) our highest priority, and work to address any issues that arise as quickly as possible.
-
-After a security vulnerability has been corrected, a security hotfix release will be deployed as soon as possible.
+Please do not publicly disclose the issue until it has been addressed by our team. We appreciate your responsible disclosure and will work with you to understand and resolve any concerns.
 
 
 ## About Rinvex
@@ -749,4 +775,7 @@ Rinvex is a software solutions startup, specialized in integrated enterprise sol
 
 This software is released under [The MIT License (MIT)](LICENSE).
 
-(c) 2016-2022 Rinvex LLC, Some rights reserved.
+Original Package Copyright (c) 2016-2022 Rinvex LLC
+Modified Package Copyright (c) 2023 Angkor Team
+
+This package is a fork of [rinvex/laravel-categories](https://github.com/rinvex/laravel-categories).

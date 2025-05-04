@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Categories\Traits;
+namespace Angkor\Categories\Traits;
 
 use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model;

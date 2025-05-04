@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Categories\Providers;
+namespace Angkor\Categories\Providers;
 
-use Rinvex\Categories\Models\Category;
+use Angkor\Categories\Models\Category;
 use Illuminate\Support\ServiceProvider;
-use Rinvex\Support\Traits\ConsoleTools;
+use Angkor\Support\Traits\ConsoleTools;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Rinvex\Categories\Console\Commands\MigrateCommand;
-use Rinvex\Categories\Console\Commands\PublishCommand;
-use Rinvex\Categories\Console\Commands\RollbackCommand;
+use Angkor\Categories\Console\Commands\MigrateCommand;
+use Angkor\Categories\Console\Commands\PublishCommand;
+use Angkor\Categories\Console\Commands\RollbackCommand;
 
 class CategoriesServiceProvider extends ServiceProvider
 {
@@ -33,11 +33,11 @@ class CategoriesServiceProvider extends ServiceProvider
     public function register()
     {
         // Merge config
-        $this->mergeConfigFrom(realpath(__DIR__.'/../../config/config.php'), 'rinvex.categories');
+        $this->mergeConfigFrom(realpath(__DIR__.'/../../config/config.php'), 'angkor.categories');
 
         // Bind eloquent models to IoC container
         $this->registerModels([
-            'rinvex.categories.category' => Category::class,
+            'angkor.categories.category' => Category::class,
         ]);
 
         // Register console commands
@@ -50,14 +50,14 @@ class CategoriesServiceProvider extends ServiceProvider
     public function boot()
     {
         // Register paths to be published by the publish command.
-        $this->publishConfigFrom(realpath(__DIR__.'/../../config/config.php'), 'rinvex/categories');
-        $this->publishMigrationsFrom(realpath(__DIR__.'/../../database/migrations'), 'rinvex/categories');
+        $this->publishConfigFrom(realpath(__DIR__.'/../../config/config.php'), 'angkor/categories');
+        $this->publishMigrationsFrom(realpath(__DIR__.'/../../database/migrations'), 'angkor/categories');
 
-        ! $this->app['config']['rinvex.categories.autoload_migrations'] || $this->loadMigrationsFrom(realpath(__DIR__.'/../../database/migrations'));
+        ! $this->app['config']['angkor.categories.autoload_migrations'] || $this->loadMigrationsFrom(realpath(__DIR__.'/../../database/migrations'));
 
         // Map relations
         Relation::morphMap([
-            'category' => config('rinvex.categories.models.category'),
+            'category' => config('angkor.categories.models.category'),
         ]);
     }
 }

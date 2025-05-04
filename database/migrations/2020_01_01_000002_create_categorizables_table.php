@@ -15,7 +15,7 @@ class CreateCategorizablesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create(config('rinvex.categories.tables.categorizables'), function (Blueprint $table) {
+        Schema::create(config('angkor.categories.tables.categorizables'), function (Blueprint $table) {
             // Columns
             $table->integer('category_id')->unsigned();
             $table->morphs('categorizable');
@@ -35,6 +35,6 @@ class CreateCategorizablesTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(config('rinvex.categories.tables.categorizables'));
+        Schema::dropIfExists(config('angkor.categories.tables.categorizables'));
     }
 }

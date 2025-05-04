@@ -2,47 +2,80 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Categories\Tests\Feature;
+namespace Angkor\Categories\Tests\Feature;
 
 use ReflectionClass;
-use PHPUnit\Framework\TestCase;
-use Illuminate\Container\Container;
+use Orchestra\Testbench\TestCase;
 use Illuminate\Support\ServiceProvider;
-use Rinvex\Categories\Providers\CategoriesServiceProvider;
+use Angkor\Categories\Models\Category;
+use Angkor\Categories\Providers\CategoriesServiceProvider;
 
 class ServiceProviderTest extends TestCase
 {
-    /** Get the service provider class. */
-    protected function getServiceProviderClass(): string
+    /**
+     * Get package providers.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return array<int, class-string>
+     */
+    protected function getPackageProviders($app): array
     {
-        return CategoriesServiceProvider::class;
+        return [
+            CategoriesServiceProvider::class,
+        ];
     }
 
-    /** @test */
-    public function it_is_a_service_provider()
+    /**
+     * Define environment setup.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return void
+     */
+    protected function defineEnvironment($app): void
     {
-        $class = $this->getServiceProviderClass();
+        // Setup default database to use sqlite :memory:
+        $app['config']->set('database.default', 'testbench');
+        $app['config']->set('database.connections.testbench', [
+            'driver'   => 'sqlite',
+            'database' => ':memory:',
+            'prefix'   => '',
+        ]);
 
-        $reflection = new ReflectionClass($class);
+        // Set up categories configuration
+        $app['config']->set('angkor.categories.tables.categories', 'categories');
+        $app['config']->set('angkor.categories.tables.categorizables', 'categorizables');
+        $app['config']->set('angkor.categories.models.category', Category::class);
+    }
 
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function it_extends_service_provider(): void
+    {
+        $reflection = new ReflectionClass(CategoriesServiceProvider::class);
         $provider = new ReflectionClass(ServiceProvider::class);
 
-        $msg = "Expected class '{$class}' to be a service provider.";
-
-        $this->assertTrue($reflection->isSubclassOf($provider), $msg);
+        $this->assertTrue(
+            $reflection->isSubclassOf($provider),
+            'CategoriesServiceProvider should extend ServiceProvider'
+        );
     }
 
-    /** @test */
-    public function it_has_provides_method()
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function it_registers_category_model(): void
     {
-        $class = $this->getServiceProviderClass();
-        $reflection = new ReflectionClass($class);
+        $this->assertTrue(
+            $this->app->bound('angkor.categories.category'),
+            'Category model should be bound to the container'
+        );
 
-        $method = $reflection->getMethod('provides');
-        $method->setAccessible(true);
+        $category = $this->app->make('angkor.categories.category');
+        $this->assertInstanceOf(Category::class, $category);
+    }
 
-        $msg = "Expected class '{$class}' to provide a valid list of services.";
-
-        $this->assertIsArray($method->invoke(new $class(new Container())), $msg);
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function it_loads_correct_configuration(): void
+    {
+        $this->assertEquals('categories', config('angkor.categories.tables.categories'));
+        $this->assertEquals('categorizables', config('angkor.categories.tables.categorizables'));
+        $this->assertEquals(Category::class, config('angkor.categories.models.category'));
     }
 }

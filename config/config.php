@@ -17,7 +17,7 @@ return [
 
     // Categories Models
     'models' => [
-        'category' => \Rinvex\Categories\Models\Category::class,
+        'category' => \Angkor\Categories\Models\Category::class,
     ],
 
 ];

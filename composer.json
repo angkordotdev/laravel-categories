@@ -1,6 +1,6 @@
 {
-    "name": "rinvex/laravel-categories",
-    "description": "Rinvex Categories is a polymorphic Laravel package, for category management. You can categorize any eloquent model with ease, and utilize the power of Nested Sets, and the awesomeness of Sluggable, and Translatable models out of the box.",
+    "name": "angkor/laravel-categories",
+    "description": "A fork of rinvex/laravel-categories - A polymorphic Laravel package for category management with Nested Sets, Sluggable, and Translatable support.",
     "type": "library",
     "keywords": [
         "model",
@@ -13,60 +13,67 @@
         "polymorphic",
         "nested-set",
         "taxonomy",
-        "rinvex"
+        "angkor"
     ],
     "license": "MIT",
-    "homepage": "https://rinvex.com",
+    "homepage": "https://open.angkor.dev",
     "support": {
-        "email": "help@rinvex.com",
-        "issues": "https://github.com/rinvex/laravel-categories/issues",
-        "source": "https://github.com/rinvex/laravel-categories",
-        "docs": "https://github.com/rinvex/laravel-categories/blob/master/README.md"
+        "email": "khmer@angkor.dev",
+        "issues": "https://github.com/angkor/laravel-categories/issues",
+        "source": "https://github.com/angkor/laravel-categories",
+        "docs": "https://github.com/angkordotdev/laravel-categories/blob/main/README.md"
     },
     "authors": [
         {
+            "name": "Angkor Team",
+            "homepage": "https://angkor.dev",
+            "email": "support@angkor.dev"
+        }
+    ],
+    "credits": [
+        {
             "name": "Rinvex LLC",
             "homepage": "https://rinvex.com",
-            "email": "help@rinvex.com"
+            "email": "help@rinvex.com",
+            "role": "Original Package Creator"
         },
         {
             "name": "Abdelrahman Omran",
             "homepage": "https://omranic.com",
             "email": "me@omranic.com",
-            "role": "Project Lead"
-        },
-        {
-            "name": "The Generous Laravel Community",
-            "homepage": "https://github.com/rinvex/laravel-categories/contributors"
+            "role": "Original Project Lead"
         }
     ],
     "require": {
-        "php": "^8.1.0",
-        "illuminate/console": "^10.0.0 || ^11.0.0",
-        "illuminate/database": "^10.0.0 || ^11.0.0",
-        "illuminate/support": "^10.0.0 || ^11.0.0",
-        "kalnoy/nestedset": "^6.0.0",
-        "rinvex/laravel-support": "^7.0.0",
-        "spatie/laravel-sluggable": "^3.4.0",
-        "symfony/console": "^6.2.0"
+        "php": "^8.2",
+        "illuminate/console": "^10.0 || ^11.0 || ^12.0",
+        "illuminate/database": "^10.0 || ^11.0 || ^12.0",
+        "illuminate/support": "^10.0 || ^11.0 || ^12.0",
+        "kalnoy/nestedset": "^6.0",
+        "angkor/laravel-support": "^8.0",
+        "spatie/laravel-sluggable": "^3.5",
+        "symfony/console": "^6.4 || ^7.0"
     },
     "require-dev": {
-        "codedungeon/phpunit-result-printer": "^0.32.0",
-        "illuminate/container": "^10.0.0 || ^11.0.0",
-        "phpunit/phpunit": "^10.1.0"
+        "illuminate/config": "^10.0 || ^11.0 || ^12.0",
+        "illuminate/container": "^10.0 || ^11.0 || ^12.0",
+        "orchestra/testbench": "^9.0",
+        "phpunit/phpunit": "^12.1",
+        "phpunit/php-code-coverage": "^12.1"
     },
     "autoload": {
         "psr-4": {
-            "Rinvex\\Categories\\": "src/"
+            "Angkor\\Categories\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Rinvex\\Categories\\Tests\\": "tests"
+            "Angkor\\Categories\\Tests\\": "tests"
         }
     },
     "scripts": {
-        "test": "vendor/bin/phpunit"
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-html coverage"
     },
     "config": {
         "sort-packages": true,
@@ -76,7 +83,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Rinvex\\Categories\\Providers\\CategoriesServiceProvider"
+                "Angkor\\Categories\\Providers\\CategoriesServiceProvider"
             ]
         }
     },

@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Rinvex\Categories\Models;
+namespace Angkor\Categories\Models;
 
 use Kalnoy\Nestedset\NestedSet;
 use Kalnoy\Nestedset\NodeTrait;
 use Spatie\Sluggable\SlugOptions;
-use Rinvex\Support\Traits\HasSlug;
+use Angkor\Support\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Model;
-use Rinvex\Support\Traits\HasTranslations;
-use Rinvex\Support\Traits\ValidatingTrait;
+use Angkor\Support\Traits\HasTranslations;
+use Angkor\Support\Traits\ValidatingTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -116,11 +116,11 @@ class Category extends Model
      */
     public function __construct(array $attributes = [])
     {
-        $this->setTable(config('rinvex.categories.tables.categories'));
+        $this->setTable(config('angkor.categories.tables.categories'));
         $this->mergeRules([
             'name' => 'required|string|strip_tags|max:150',
             'description' => 'nullable|string|max:32768',
-            'slug' => 'required|alpha_dash|max:150|unique:'.config('rinvex.categories.models.category').',slug',
+            'slug' => 'required|alpha_dash|max:150|unique:'.config('angkor.categories.models.category').',slug',
             NestedSet::LFT => 'sometimes|required|integer',
             NestedSet::RGT => 'sometimes|required|integer',
             NestedSet::PARENT_ID => 'nullable|integer',
@@ -138,7 +138,7 @@ class Category extends Model
      */
     public function entries(string $class): MorphToMany
     {
-        return $this->morphedByMany($class, 'categorizable', config('rinvex.categories.tables.categorizables'), 'category_id', 'categorizable_id', 'id', 'id');
+        return $this->morphedByMany($class, 'categorizable', config('angkor.categories.tables.categorizables'), 'category_id', 'categorizable_id', 'id', 'id');
     }
 
     /**
