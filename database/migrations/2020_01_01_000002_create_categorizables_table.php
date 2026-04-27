@@ -23,7 +23,7 @@ class CreateCategorizablesTable extends Migration
 
             // Indexes
             $table->unique(['category_id', 'categorizable_id', 'categorizable_type'], 'categorizables_ids_type_unique');
-            $table->foreign('category_id')->references('id')->on(config('rinvex.categories.tables.categories'))
+            $table->foreign('category_id')->references('id')->on(config('angkor.categories.tables.categories'))
                   ->onDelete('cascade')->onUpdate('cascade');
         });
     }

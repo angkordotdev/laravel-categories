@@ -70,7 +70,7 @@ trait Categorizable
     /**
      * Attach the given category(ies) to the model.
      *
-     * @param int|string|array|\ArrayAccess|\Rinvex\Categories\Models\Category $categories
+     * @param int|string|array|\ArrayAccess|\Angkor\Categories\Models\Category $categories
      *
      * @return void
      */
@@ -283,7 +283,7 @@ trait Categorizable
 
         // Find categories by their slugs
         if (is_string($categories) || (is_array($categories) && is_string(Arr::first($categories)))) {
-            $categories = app('rinvex.categories.category')->whereIn('slug', (array) $categories)->get()->pluck('id');
+            $categories = app('angkor.categories.category')->whereIn('slug', (array) $categories)->get()->pluck('id');
         }
 
         if ($categories instanceof Model) {

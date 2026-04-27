@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 /**
- * Rinvex\Categories\Models\Category.
+ * Angkor\Categories\Models\Category.
  *
  * @property int                 $id
  * @property string              $slug
@@ -28,19 +28,19 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property \Carbon\Carbon|null $deleted_at
- * @property-read \Kalnoy\Nestedset\Collection|\Rinvex\Categories\Models\Category[] $children
- * @property-read \Rinvex\Categories\Models\Category|null                           $parent
+ * @property-read \Kalnoy\Nestedset\Collection|\Angkor\Categories\Models\Category[] $children
+ * @property-read \Angkor\Categories\Models\Category|null                           $parent
  *
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Categories\Models\Category whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Categories\Models\Category whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Categories\Models\Category whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Categories\Models\Category whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Categories\Models\Category whereLft($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Categories\Models\Category whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Categories\Models\Category whereParentId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Categories\Models\Category whereRgt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Categories\Models\Category whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Categories\Models\Category whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Angkor\Categories\Models\Category whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Angkor\Categories\Models\Category whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Angkor\Categories\Models\Category whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Angkor\Categories\Models\Category whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Angkor\Categories\Models\Category whereLft($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Angkor\Categories\Models\Category whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Angkor\Categories\Models\Category whereParentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Angkor\Categories\Models\Category whereRgt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Angkor\Categories\Models\Category whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Angkor\Categories\Models\Category whereUpdatedAt($value)
  *
  * @mixin \Eloquent
  */
