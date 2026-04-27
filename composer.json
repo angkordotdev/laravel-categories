@@ -45,19 +45,19 @@
         }
     ],
     "require": {
-        "php": "^8.2",
-        "illuminate/console": "^10.0 || ^11.0 || ^12.0",
-        "illuminate/database": "^10.0 || ^11.0 || ^12.0",
-        "illuminate/support": "^10.0 || ^11.0 || ^12.0",
-        "kalnoy/nestedset": "^6.0",
-        "angkor/laravel-support": "^8.0",
+        "php": "^8.3",
+        "illuminate/console": "^10.0 || ^11.0 || ^12.0 || ^13.0",
+        "illuminate/database": "^10.0 || ^11.0 || ^12.0 || ^13.0",
+        "illuminate/support": "^10.0 || ^11.0 || ^12.0 || ^13.0",
+        "kalnoy/nestedset": "^6.0 || ^7.0",
+        "angkor/laravel-support": "^8.0 || ^9.0",
         "spatie/laravel-sluggable": "^3.5",
-        "symfony/console": "^6.4 || ^7.0"
+        "symfony/console": "^6.4 || ^7.0 || ^8.0"
     },
     "require-dev": {
-        "illuminate/config": "^10.0 || ^11.0 || ^12.0",
-        "illuminate/container": "^10.0 || ^11.0 || ^12.0",
-        "orchestra/testbench": "^9.0",
+        "illuminate/config": "^10.0 || ^11.0 || ^12.0 || ^13.0",
+        "illuminate/container": "^10.0 || ^11.0 || ^12.0 || ^13.0",
+        "orchestra/testbench": "^9.0 || ^10.0 || ^11.0",
         "phpunit/phpunit": "^12.1",
         "phpunit/php-code-coverage": "^12.1"
     },
